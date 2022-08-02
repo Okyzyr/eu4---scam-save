@@ -6,10 +6,10 @@ from tkinter import ttk
 from tkinter.messagebox import showinfo
 
 root = tk.Tk()
-path = "C:\\Users\\kcuki\\Documents\\Paradox Interactive\\Europa Universalis IV\\save games\\"
-path2 = open("cfg.txt", "r")
-path2.read()
-path2.close()
+# path = "C:\\Users\\kcuki\\Documents\\Paradox Interactive\\Europa Universalis IV\\save games\\"
+config = open("cfg.txt", "r")
+path = config.read()
+config.close()
 time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 dir_list = os.listdir(path)
