@@ -7,6 +7,9 @@ from tkinter.messagebox import showinfo
 
 root = tk.Tk()
 path = "C:\\Users\\kcuki\\Documents\\Paradox Interactive\\Europa Universalis IV\\save games\\"
+path2 = open("cfg.txt", "r")
+path2.read()
+path2.close()
 time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 dir_list = os.listdir(path)
@@ -61,5 +64,6 @@ backup_button.pack(
     ipady=5,
     expand=True
 )
+
 
 root.mainloop()
