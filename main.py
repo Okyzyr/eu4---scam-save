@@ -6,10 +6,10 @@ path = "C:\\Users\\kcuki\\Documents\\Paradox Interactive\\Europa Universalis IV\
 time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 dir_list = os.listdir(path)
-plik = None
 
 
 def backup():
+    plik = None
     info = input("Podaj krótkie info do pliku: ")
 
     for i in range(len(dir_list)):
