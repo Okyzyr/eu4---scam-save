@@ -2,13 +2,15 @@ import shutil
 import datetime
 import os
 import tkinter as tk
+from tkinter import ttk
+from tkinter.messagebox import showinfo
+
 root = tk.Tk()
 path = "C:\\Users\\kcuki\\Documents\\Paradox Interactive\\Europa Universalis IV\\save games\\"
 time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 dir_list = os.listdir(path)
 
-root.title("EU4 Ironman Save Backup")
 
 def backup():
     plik = None
@@ -21,9 +23,43 @@ def backup():
     src_path = path + plik
     dst_path = path + "\\backup\\" + data + " (" + info + ") " + plik
     shutil.copy(src_path, dst_path)
-    print('Copied', data)
+    showinfo(
+        title='Information',
+        message='Plik skopiowany'
+    )
 
 
-backup()
+
+root.title("EU4 Ironman Save Backup")
+root.geometry('400x300+50+50')
+root.resizable(False, False)
+root.iconbitmap('EU.ico')
+
+# exit button
+exit_button = ttk.Button(
+    root,
+    text='Exit',
+    command=lambda: root.quit()
+)
+
+exit_button.pack(
+    ipadx=5,
+    ipady=5,
+    expand=True
+)
+
+# copy button
+
+backup_button = ttk.Button(
+    root,
+    text='Copy',
+    command=backup
+)
+
+backup_button.pack(
+    ipadx=5,
+    ipady=5,
+    expand=True
+)
 
 root.mainloop()
