@@ -1,12 +1,14 @@
 import shutil
 import datetime
 import os
-
+import tkinter as tk
+root = tk.Tk()
 path = "C:\\Users\\kcuki\\Documents\\Paradox Interactive\\Europa Universalis IV\\save games\\"
 time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 dir_list = os.listdir(path)
 
+root.title("EU4 Ironman Save Backup")
 
 def backup():
     plik = None
@@ -23,3 +25,5 @@ def backup():
 
 
 backup()
+
+root.mainloop()
