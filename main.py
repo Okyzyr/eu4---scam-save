@@ -18,15 +18,21 @@ print(path)
 
 
 def backup():
-    plik = None
+    file = None
     # info = input("Podaj krótkie info do pliku: ")
+    if "backup" in dir_list:
+        pass
+    else:
+        folder_name = "backup"
+        full_path = os.path.join(path, folder_name)
+        os.mkdir(full_path)
 
     for i in range(len(dir_list)):
         if dir_list[i][-3:len(dir_list[i])] == "eu4" and len(dir_list[i]) == 5:
-            plik = dir_list[i]
+            file = dir_list[i]
 
-    src_path = path + plik
-    dst_path = path + "/backup/" + data + " (" + "info" + ") " + plik
+    src_path = path + file
+    dst_path = path + "/backup/" + data + " (" + "info" + ") " + file
     shutil.copy(src_path, dst_path)
     showinfo(
         title='Information',
