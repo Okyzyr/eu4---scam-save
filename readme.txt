@@ -1,0 +1,1 @@
+w pliku cfg.txt doklej ścieżkę w której zapisujesz save z gry.
