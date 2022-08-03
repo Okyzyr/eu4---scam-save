@@ -8,10 +8,10 @@ from tkinter import ttk, Label
 from tkinter.messagebox import showinfo
 import linecache
 
+count = 0
 root = tk.Tk()
 time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
-
 
 
 def sys_os_check():
@@ -26,7 +26,7 @@ def sys_os_check():
 system = sys_os_check()
 
 config = open("cfg.txt", "r")
-count = 0
+
 while True:
     count += 1
     line = config.readline()
@@ -34,12 +34,13 @@ while True:
         break
     elif line == system + ":\n":
         path = linecache.getline(r'cfg.txt', 2).strip()
-    elif line == system + ":\n":
+    elif line == system + "\n":
         path = linecache.getline(r'cfg.txt', 4).strip()
 
 config.close()
 
 dir_list = os.listdir(path)
+
 
 def backup():
     file = None
