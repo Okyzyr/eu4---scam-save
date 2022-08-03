@@ -17,18 +17,6 @@ dir_list = os.listdir(path)
 print(path)
 
 
-def sprawdz_backup():
-    if "backup" in dir_list:
-        pass
-    else:
-        pliki = "backup"
-        sciezka = os.path.join(path, pliki)
-        os.mkdir(sciezka)
-
-
-sprawdz_backup()
-
-
 def backup():
     file = None
     # info = input("Podaj krótkie info do pliku: ")
