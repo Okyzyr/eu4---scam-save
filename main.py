@@ -6,6 +6,7 @@ import tkinter as tk
 from sys import platform
 from tkinter import ttk, Label
 from tkinter.messagebox import showinfo
+from tkinter.filedialog import askopenfilename
 import linecache
 
 count = 0
