@@ -13,7 +13,6 @@ time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 
 
-
 def syschceck():
     if platform == "linux" or platform == "linux2":
         sys.exit()
@@ -23,7 +22,6 @@ def syschceck():
     elif platform == "win32":
         path = linecache.getline(r'cfg.txt', 4).strip()
         return path
-
 
 path = syschceck()
 
