@@ -14,6 +14,17 @@ time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 
 
+def syschceck():
+    if platform == "linux" or platform == "linux2":
+        sys.exit()
+    elif platform == "darwin":
+        path = linecache.getline(r'cfg.txt', 2).strip()
+        return path
+    elif platform == "win32":
+        path = linecache.getline(r'cfg.txt', 4).strip()
+        return path
+
+
 path = syschceck()
 
 dir_list = os.listdir(path)
