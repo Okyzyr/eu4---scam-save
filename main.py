@@ -14,30 +14,7 @@ time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 
 
-def sys_os_check():
-    if platform == "linux" or platform == "linux2":
-        sys.exit()
-    elif platform == "darwin":
-        return platform
-    elif platform == "win32":
-        return platform
-
-
-system = sys_os_check()
-
-config = open("cfg.txt", "r")
-
-while True:
-    count += 1
-    line = config.readline()
-    if not line:
-        break
-    elif line == system + ":\n":
-        path = linecache.getline(r'cfg.txt', 2).strip()
-    elif line == system + "\n":
-        path = linecache.getline(r'cfg.txt', 4).strip()
-
-config.close()
+path = syschceck()
 
 dir_list = os.listdir(path)
 

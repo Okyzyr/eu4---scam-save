@@ -1,4 +1,4 @@
-darwin
+MacOS:
 /Users/kuba/Documents/Paradox Interactive/Europa Universalis IV/save games/
-win32
+Windows:
 C:\\Users\\kcuki\\Documents\\Paradox Interactive\\Europa Universalis IV\\save games\\
