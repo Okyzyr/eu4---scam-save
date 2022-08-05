@@ -41,7 +41,6 @@ def file_name():
 def backup():
     path = file_path()
     file = file_name()
-    print(path + file)
     dir_list = os.listdir(path)
     if "backup" in dir_list:
         pass
@@ -51,12 +50,37 @@ def backup():
         os.mkdir(full_path)
 
     src_path = path + file
-    dst_path = path + "/backup/" + data + " (" + "CPY" + ") " + file
+    dst_path = path + "/backup/" + data + " |" + file
     shutil.copy(src_path, dst_path)
     showinfo(
         title='Information',
         message='Plik ' + file + ' skopiowany'
     )
+
+def load_file():
+    load_file_name = askopenfilename()
+    load_path = load_file_name
+    destination_path = file_path()
+    split = load_file_name.rindex('|')
+    split_backup_path = load_path.rindex('/')
+    load_file_name = load_file_name[split + 1:]
+    backup_path = load_path[:split_backup_path+1]
+    copy_orig_file = backup_path+load_file_name
+    # print("1 Backup path: ", backup_path)
+    # print("2 File to load name: ", load_file_name)
+    # print("3 backup path + load file name: ", backup_path+load_file_name)
+    # print("4 Oryginal name to copy: ", copy_orig_file)
+    # print("5 selected file to copy: ", load_path)
+    # print("6 Destination path:", destination_path)
+    if os.path.exists(destination_path + load_file_name):
+        os.remove(destination_path + load_file_name)
+        shutil.copy(load_path, copy_orig_file)
+        shutil.copy(copy_orig_file, destination_path + load_file_name)
+        os.remove(copy_orig_file)
+    else:
+        shutil.copy(load_path, copy_orig_file)
+        shutil.copy(copy_orig_file, destination_path + load_file_name)
+        os.remove(copy_orig_file)
 
 
 root.title("EU4 Ironman Save Backup")
@@ -64,8 +88,8 @@ root.geometry('500x150+50+50')
 root.resizable(True, True)
 root.iconbitmap('EU.ico')
 
-label = Label(root, text='Kopiowanie pliku do folderu "/backup"')
-label.grid(row=2, column=0)
+# label = Label(root, text='Kopiowanie pliku do folderu "/backup"')
+# label.grid(row=2, column=0)
 
 # exit button
 exit_button = ttk.Button(
@@ -73,7 +97,7 @@ exit_button = ttk.Button(
     text='Exit',
     command=lambda: root.quit()
 )
-exit_button.grid(row=5, column=0)
+exit_button.grid(row=6, column=1)
 
 # copy button
 
@@ -90,6 +114,13 @@ backup_button.grid(row=3, column=0)
 
 btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
 btn_open.grid(row=6, column=0)
+
+# exit button
+load_button = ttk.Button(
+    root,
+    text='Load',
+    command=load_file)
+load_button.grid(row=3, column=1)
 
 
 
