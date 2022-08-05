@@ -57,6 +57,7 @@ def backup():
         message='Plik ' + file + ' skopiowany'
     )
 
+
 def load_file():
     load_file_name = askopenfilename()
     load_path = load_file_name
@@ -64,8 +65,8 @@ def load_file():
     split = load_file_name.rindex('|')
     split_backup_path = load_path.rindex('/')
     load_file_name = load_file_name[split + 1:]
-    backup_path = load_path[:split_backup_path+1]
-    copy_orig_file = backup_path+load_file_name
+    backup_path = load_path[:split_backup_path + 1]
+    copy_orig_file = backup_path + load_file_name
     # print("1 Backup path: ", backup_path)
     # print("2 File to load name: ", load_file_name)
     # print("3 backup path + load file name: ", backup_path+load_file_name)
@@ -84,45 +85,31 @@ def load_file():
 
 
 root.title("EU4 Ironman Save Backup")
-root.geometry('500x150+50+50')
+root.geometry('500x180')
 root.resizable(True, True)
 root.iconbitmap('EU.ico')
 
-# label = Label(root, text='Kopiowanie pliku do folderu "/backup"')
-# label.grid(row=2, column=0)
-
 # exit button
-exit_button = ttk.Button(
-    root,
-    text='Exit',
-    command=lambda: root.quit()
-)
-exit_button.grid(row=6, column=1)
+exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
+exit_button.place(x=317, y=85)
 
-# copy button
+# save button
+backup_button = ttk.Button(root, text='Save', command=backup)
 
-backup_button = ttk.Button(
-    root,
-    text='Save',
-    command=backup
-)
+backup_button.place(x=67, y=19)
 
-backup_button.grid(row=3, column=0)
-
-# label2 = Label(root, text='ścieżka zapisu save')
-# label2.grid(row=4, column=0)
-
+# select file button
 btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
-btn_open.grid(row=6, column=0)
+btn_open.place(x=67, y=85)
 
-# exit button
-load_button = ttk.Button(
-    root,
-    text='Load',
-    command=load_file)
-load_button.grid(row=3, column=1)
+# load button
+load_button = ttk.Button(root, text='Load', command=load_file)
+load_button.place(x=317, y=19)
 
-
+label2 = Label(root, text='ścieżka zapisu save: \n' + file_path())
+label2.place(x=10, y=119)
+label3 = Label(root, text='plik zapisu: ' + file_name())
+label3.place(x=185, y=155)
 
 
 root.mainloop()
