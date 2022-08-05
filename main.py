@@ -7,10 +7,6 @@ from tkinter.messagebox import showinfo
 from tkinter.filedialog import askopenfilename
 import linecache
 
-root = tk.Tk()
-time = datetime.datetime.now()
-data = time.strftime("%m.%d-%H.%M.%S")
-
 
 def open_file_chooser():
     filename = askopenfilename()
@@ -38,6 +34,8 @@ def file_name():
 
 
 def backup():
+    time = datetime.datetime.now()
+    data = time.strftime("%m.%d-%H.%M.%S")
     path = file_path()
     file = file_name()
     dir_list = os.listdir(path)
@@ -77,10 +75,11 @@ def load_file():
         os.remove(copy_orig_file)
 
 
+root = tk.Tk()
+
 root.title("EU4 Ironman Save Backup")
 root.geometry('500x180')
 root.resizable(False, False)
-
 
 # exit button
 exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
@@ -103,6 +102,5 @@ label2 = Label(root, text='ścieżka zapisu save: \n' + file_path())
 label2.place(x=10, y=119)
 label3 = Label(root, text='plik zapisu: ' + file_name())
 label3.place(x=185, y=155)
-
 
 root.mainloop()
