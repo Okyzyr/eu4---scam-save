@@ -79,16 +79,19 @@ exit_button.grid(row=5, column=0)
 
 backup_button = ttk.Button(
     root,
-    text='Copy',
+    text='Save',
     command=backup
 )
 
 backup_button.grid(row=3, column=0)
 
-label2 = Label(root, text='ścieżka zapisu save')
-label2.grid(row=4, column=0)
+# label2 = Label(root, text='ścieżka zapisu save')
+# label2.grid(row=4, column=0)
 
-btn_open = ttk.Button(root, text="Open", command=open_file_chooser)
+btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
 btn_open.grid(row=6, column=0)
+
+
+
 
 root.mainloop()
