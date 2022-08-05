@@ -1,27 +1,21 @@
-import datetime
-import os, sys
-import shutil
+import os, sys, shutil, datetime, linecache
 import tkinter as tk
 from tkinter import ttk, Label
 from tkinter.messagebox import showinfo
 from tkinter.filedialog import askopenfilename
-import linecache
 
-root = tk.Tk()
+
 
 def restart():
     python = sys.executable
-    os.execl(python, python, * sys.argv)
+    os.execl(python, python, *sys.argv)
+
 
 def open_file_chooser():
     filename = askopenfilename()
     with open('cfg.txt', 'w') as file:
         file.writelines(filename)
     file.close()
-    showinfo(
-        title='Info',
-        message='Zapisz ustawienia'
-    )
     restart()
 
 
@@ -81,7 +75,7 @@ def load_file():
         os.remove(copy_orig_file)
 
 
-# root = tk.Tk()
+root = tk.Tk()
 
 root.title("EU4 Ironman Save Backup")
 root.geometry('500x180')
@@ -104,9 +98,9 @@ btn_open.place(x=67, y=85)
 load_button = ttk.Button(root, text='Load', command=load_file)
 load_button.place(x=317, y=19)
 
-label2 = Label(root, text='ścieżka zapisu save: \n' + file_path())
+label2 = Label(root, text='Selected save game path: \n' + file_path())
 label2.place(x=10, y=119)
-label3 = Label(root, text='plik zapisu: ' + file_name())
+label3 = Label(root, text='Backup file: ' + file_name())
 label3.place(x=185, y=155)
 
 root.mainloop()
