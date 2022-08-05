@@ -86,7 +86,7 @@ def load_file():
 
 root.title("EU4 Ironman Save Backup")
 root.geometry('500x180')
-root.resizable(True, True)
+root.resizable(False, False)
 root.iconbitmap('EU.ico')
 
 # exit button
