@@ -17,6 +17,7 @@ def open_file_chooser():
     filename = askopenfilename()
     with open('cfg.txt', 'w') as file:
         file.writelines(filename)
+    file.close()
 
 
 def file_path():
@@ -25,22 +26,19 @@ def file_path():
     path = path[:split + 1]
     return path
 
+
 def file_name():
     file_name = linecache.getline(r'cfg.txt', 1).strip()
     split = file_name.rindex('/')
     file_name = file_name[split + 1:]
-    print(file_name)
     return file_name
-
-path = file_path()
-file_name = file_name()
-
-dir_list = os.listdir(path)
 
 
 def backup():
-    file = file_name
-    # info = input("Podaj krótkie info do pliku: ")
+    path = file_path()
+    file = file_name()
+    print(path + file)
+    dir_list = os.listdir(path)
     if "backup" in dir_list:
         pass
     else:
@@ -57,17 +55,12 @@ def backup():
     )
 
 
-plik = None
-for i in range(len(dir_list)):
-    if dir_list[i][-3:len(dir_list[i])] == "eu4" and len(dir_list[i]) == 5:
-        plik = dir_list[i]
-
 root.title("EU4 Ironman Save Backup")
 root.geometry('500x150+50+50')
 root.resizable(True, True)
 root.iconbitmap('EU.ico')
 
-label = Label(root, text='Kopiowanie pliku "' + plik + '" do folderu "/backup"')
+label = Label(root, text='Kopiowanie pliku do folderu "/backup"')
 label.grid(row=2, column=0)
 
 # exit button
@@ -88,7 +81,7 @@ backup_button = ttk.Button(
 
 backup_button.grid(row=3, column=0)
 
-label2 = Label(root, text='ścieżka zapisu save: \n' + path)
+label2 = Label(root, text='ścieżka zapisu save')
 label2.grid(row=4, column=0)
 
 btn_open = ttk.Button(root, text="Open", command=open_file_chooser)
