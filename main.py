@@ -1,5 +1,5 @@
 import datetime
-import os
+import os, sys
 import shutil
 import tkinter as tk
 from tkinter import ttk, Label
@@ -7,6 +7,11 @@ from tkinter.messagebox import showinfo
 from tkinter.filedialog import askopenfilename
 import linecache
 
+root = tk.Tk()
+
+def restart():
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
 
 def open_file_chooser():
     filename = askopenfilename()
@@ -15,8 +20,9 @@ def open_file_chooser():
     file.close()
     showinfo(
         title='Info',
-        message='Zrestartuj program by korzystać z opcji szybkiego zapisu'
+        message='Zapisz ustawienia'
     )
+    restart()
 
 
 def file_path():
@@ -75,7 +81,7 @@ def load_file():
         os.remove(copy_orig_file)
 
 
-root = tk.Tk()
+# root = tk.Tk()
 
 root.title("EU4 Ironman Save Backup")
 root.geometry('500x180')
