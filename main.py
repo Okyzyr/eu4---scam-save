@@ -49,7 +49,7 @@ def backup():
         os.mkdir(full_path)
 
     src_path = path + file
-    dst_path = path + "/backup/" + data + " |" + file
+    dst_path = path + "backup/" + data + " =" + file
     shutil.copy(src_path, dst_path)
     showinfo(
         title='Information',
@@ -61,7 +61,7 @@ def load_file():
     load_file_name = askopenfilename()
     load_path = load_file_name
     destination_path = file_path()
-    split = load_file_name.rindex('|')
+    split = load_file_name.rindex('=')
     split_backup_path = load_path.rindex('/')
     load_file_name = load_file_name[split + 1:]
     backup_path = load_path[:split_backup_path + 1]
