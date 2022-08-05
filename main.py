@@ -18,6 +18,10 @@ def open_file_chooser():
     with open('cfg.txt', 'w') as file:
         file.writelines(filename)
     file.close()
+    showinfo(
+        title='Info',
+        message='Zrestartuj program'
+    )
 
 
 def file_path():
@@ -51,7 +55,7 @@ def backup():
     shutil.copy(src_path, dst_path)
     showinfo(
         title='Information',
-        message='Plik skopiowany'
+        message='Plik ' + file + ' skopiowany'
     )
 
 
