@@ -81,7 +81,7 @@ def load_file():
 root = tk.Tk()
 
 root.title("EU4 Ironman Save Backup")
-root.geometry('500x180')
+root.geometry('485x180')
 root.resizable(False, False)
 
 # exit button
@@ -89,7 +89,7 @@ exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
 exit_button.place(x=317, y=85)
 
 # save button
-backup_button = ttk.Button(root, text='Save', command=backup)
+backup_button = ttk.Button(root, text='Copy', command=backup)
 
 backup_button.place(x=67, y=19)
 
@@ -98,7 +98,7 @@ btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
 btn_open.place(x=67, y=85)
 
 # load button
-load_button = ttk.Button(root, text='Load', command=load_file)
+load_button = ttk.Button(root, text='Rollback', command=load_file)
 load_button.place(x=317, y=19)
 
 label2 = Label(root, text='Selected save game path: \n' + file_path())
