@@ -7,7 +7,6 @@ from tkinter.messagebox import showinfo
 from tkinter.filedialog import askopenfilename
 import linecache
 
-count = 0
 root = tk.Tk()
 time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
@@ -20,7 +19,7 @@ def open_file_chooser():
     file.close()
     showinfo(
         title='Info',
-        message='Zrestartuj program'
+        message='Zrestartuj program by korzystać z opcji szybkiego zapisu'
     )
 
 
@@ -81,7 +80,7 @@ def load_file():
 root.title("EU4 Ironman Save Backup")
 root.geometry('500x180')
 root.resizable(False, False)
-root.iconbitmap('EU.ico')
+
 
 # exit button
 exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
