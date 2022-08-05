@@ -1,11 +1,10 @@
 import datetime
 import os
 import shutil
-import sys
 import tkinter as tk
-from sys import platform
 from tkinter import ttk, Label
 from tkinter.messagebox import showinfo
+from tkinter.filedialog import askopenfilename
 import linecache
 
 count = 0
@@ -14,35 +13,38 @@ time = datetime.datetime.now()
 data = time.strftime("%m.%d-%H.%M.%S")
 
 
-def syschceck():
-    if platform == "linux" or platform == "linux2":
-        sys.exit()
-    elif platform == "darwin":
-        path = linecache.getline(r'cfg.txt', 2).strip()
-        return path
-    elif platform == "win32":
-        path = linecache.getline(r'cfg.txt', 4).strip()
-        return path
+def open_file_chooser():
+    filename = askopenfilename()
+    with open('cfg.txt', 'w') as file:
+        file.writelines(filename)
+    file.close()
 
 
-path = syschceck()
+def file_path():
+    path = linecache.getline(r'cfg.txt', 1).strip()
+    split = path.rindex('/')
+    path = path[:split + 1]
+    return path
 
-dir_list = os.listdir(path)
+
+def file_name():
+    file_name = linecache.getline(r'cfg.txt', 1).strip()
+    split = file_name.rindex('/')
+    file_name = file_name[split + 1:]
+    return file_name
 
 
 def backup():
-    file = None
-    # info = input("Podaj krótkie info do pliku: ")
+    path = file_path()
+    file = file_name()
+    print(path + file)
+    dir_list = os.listdir(path)
     if "backup" in dir_list:
         pass
     else:
         folder_name = "backup"
         full_path = os.path.join(path, folder_name)
         os.mkdir(full_path)
-
-    for i in range(len(dir_list)):
-        if dir_list[i][-3:len(dir_list[i])] == "eu4" and len(dir_list[i]) == 5:
-            file = dir_list[i]
 
     src_path = path + file
     dst_path = path + "/backup/" + data + " (" + "CPY" + ") " + file
@@ -53,17 +55,12 @@ def backup():
     )
 
 
-plik = None
-for i in range(len(dir_list)):
-    if dir_list[i][-3:len(dir_list[i])] == "eu4" and len(dir_list[i]) == 5:
-        plik = dir_list[i]
-
 root.title("EU4 Ironman Save Backup")
-root.geometry('500x130+50+50')
+root.geometry('500x150+50+50')
 root.resizable(True, True)
 root.iconbitmap('EU.ico')
 
-label = Label(root, text='Kopiowanie pliku "' + plik + '" do folderu "/backup"')
+label = Label(root, text='Kopiowanie pliku do folderu "/backup"')
 label.grid(row=2, column=0)
 
 # exit button
@@ -84,6 +81,10 @@ backup_button = ttk.Button(
 
 backup_button.grid(row=3, column=0)
 
-label2 = Label(root, text='ścieżka zapisu save: \n' + path)
+label2 = Label(root, text='ścieżka zapisu save')
 label2.grid(row=4, column=0)
+
+btn_open = ttk.Button(root, text="Open", command=open_file_chooser)
+btn_open.grid(row=6, column=0)
+
 root.mainloop()
