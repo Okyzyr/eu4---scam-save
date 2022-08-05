@@ -1,9 +1,12 @@
-import os, sys, shutil, datetime, linecache
+import datetime
+import linecache
+import os
+import shutil
+import sys
 import tkinter as tk
 from tkinter import ttk, Label
-from tkinter.messagebox import showinfo
 from tkinter.filedialog import askopenfilename
-
+from tkinter.messagebox import showinfo
 
 
 def restart():
@@ -51,7 +54,7 @@ def backup():
     shutil.copy(src_path, dst_path)
     showinfo(
         title='Information',
-        message='Plik ' + file + ' skopiowany'
+        message='File ' + file + ' duplicated'
     )
 
 
