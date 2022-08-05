@@ -67,12 +67,6 @@ def load_file():
     load_file_name = load_file_name[split + 1:]
     backup_path = load_path[:split_backup_path + 1]
     copy_orig_file = backup_path + load_file_name
-    # print("1 Backup path: ", backup_path)
-    # print("2 File to load name: ", load_file_name)
-    # print("3 backup path + load file name: ", backup_path+load_file_name)
-    # print("4 Oryginal name to copy: ", copy_orig_file)
-    # print("5 selected file to copy: ", load_path)
-    # print("6 Destination path:", destination_path)
     if os.path.exists(destination_path + load_file_name):
         os.remove(destination_path + load_file_name)
         shutil.copy(load_path, copy_orig_file)
