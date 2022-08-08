@@ -56,7 +56,11 @@ def backup():
         title='Information',
         message='File ' + file + ' duplicated'
     )
+def last_save():
+    pass
 
+def quick_save():
+    pass
 
 def load_file():
     load_file_name = askopenfilename()
@@ -81,29 +85,36 @@ def load_file():
 root = tk.Tk()
 
 root.title("EU4 Ironman Save Backup")
-root.geometry('485x180')
+root.geometry('485x280')
 root.resizable(False, False)
-
-# exit button
-exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
-exit_button.place(x=317, y=85)
 
 # save button
 backup_button = ttk.Button(root, text='Copy', command=backup)
-
 backup_button.place(x=67, y=19)
 
-# select file button
-btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
-btn_open.place(x=67, y=85)
+# quick save button
+fast_backup = ttk.Button(root, text='Quick Copy', command=quick_save)
+fast_backup.place(x=59, y=105)
 
 # load button
 load_button = ttk.Button(root, text='Rollback', command=load_file)
 load_button.place(x=317, y=19)
 
+# quick load button
+quick_load_button = ttk.Button(root, text='Rollback last save', command=last_save)
+quick_load_button.place(x=288, y=105)
+
+# select file button
+btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
+btn_open.place(x=67, y=185)
+
+# exit button
+exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
+exit_button.place(x=317, y=185)
+
 label2 = Label(root, text='Selected save game path: \n' + file_path())
-label2.place(x=10, y=119)
+label2.place(x=10, y=219)
 label3 = Label(root, text='Backup file: ' + file_name())
-label3.place(x=185, y=155)
+label3.place(x=185, y=255)
 
 root.mainloop()
