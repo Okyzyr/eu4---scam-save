@@ -4,6 +4,7 @@ import os
 import shutil
 import sys
 import tkinter as tk
+import glob
 from tkinter import ttk, Label
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import showinfo
@@ -41,6 +42,7 @@ def backup():
     data = time.strftime("%m.%d-%H.%M.%S")
     path = file_path()
     file = file_name()
+    new_file_name = data + " " + file
     dir_list = os.listdir(path)
     if "backup" in dir_list:
         pass
@@ -50,23 +52,48 @@ def backup():
         os.mkdir(full_path)
 
     src_path = path + file
-    dst_path = path + "backup/" + data + " =" + file
+    dst_path = path + "backup/" + new_file_name
     shutil.copy(src_path, dst_path)
     showinfo(
         title='Information',
-        message='File ' + file + ' duplicated'
+        message='File "' + file + '" duplicated as: \n"' + new_file_name + '"'
     )
-def last_save():
-    pass
+
 
 def quick_save():
-    pass
+    time = datetime.datetime.now()
+    data = time.strftime("%m.%d-%H.%M.%S")
+    path = file_path()
+    file = file_name()
+    new_file_name = data + " " + file
+    dir_list = os.listdir(path)
+    if "backup" in dir_list:
+        pass
+    else:
+        folder_name = "backup"
+        full_path = os.path.join(path, folder_name)
+        os.mkdir(full_path)
+
+    src_path = path + file
+    dst_path = path + "backup/" + new_file_name
+    shutil.copy(src_path, dst_path)
+
+
+def last_save():
+    path = file_path()
+    files = glob.glob(path + "backup/" + "*.eu4")
+    last_save = max(files, key=os.path.getctime)
+    split = last_save.rindex(" ")
+    newest_file = last_save[split + 1:]
+    shutil.copy(last_save, path + newest_file)
+
+
 
 def load_file():
     load_file_name = askopenfilename()
     load_path = load_file_name
     destination_path = file_path()
-    split = load_file_name.rindex('=')
+    split = load_file_name.rindex(' ')
     split_backup_path = load_path.rindex('/')
     load_file_name = load_file_name[split + 1:]
     backup_path = load_path[:split_backup_path + 1]
