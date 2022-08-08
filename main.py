@@ -94,7 +94,7 @@ backup_button.place(x=67, y=19)
 
 # quick save button
 fast_backup = ttk.Button(root, text='Quick Copy', command=quick_save)
-fast_backup.place(x=59, y=105)
+fast_backup.place(x=64, y=105)
 
 # load button
 load_button = ttk.Button(root, text='Rollback', command=load_file)
@@ -102,7 +102,7 @@ load_button.place(x=317, y=19)
 
 # quick load button
 quick_load_button = ttk.Button(root, text='Rollback last save', command=last_save)
-quick_load_button.place(x=288, y=105)
+quick_load_button.place(x=300, y=105)
 
 # select file button
 btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
