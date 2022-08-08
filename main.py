@@ -41,6 +41,7 @@ def backup():
     data = time.strftime("%m.%d-%H.%M.%S")
     path = file_path()
     file = file_name()
+    new_file_name = data + " =" + file
     dir_list = os.listdir(path)
     if "backup" in dir_list:
         pass
@@ -50,17 +51,21 @@ def backup():
         os.mkdir(full_path)
 
     src_path = path + file
-    dst_path = path + "backup/" + data + " =" + file
+    dst_path = path + "backup/" + new_file_name.upper()
     shutil.copy(src_path, dst_path)
     showinfo(
         title='Information',
-        message='File ' + file + ' duplicated'
+        message='File "' + new_file_name.upper() + '" duplicated'
     )
+
+
 def last_save():
     pass
 
+
 def quick_save():
     pass
+
 
 def load_file():
     load_file_name = askopenfilename()
