@@ -60,12 +60,6 @@ def backup():
     )
 
 
-def last_save():
-    path = file_path()
-    files = glob.glob(path + "/backup/" + "*.eu4")
-    print("Recently modified Docs", max(files, key=os.path.getctime))
-
-
 def quick_save():
     time = datetime.datetime.now()
     data = time.strftime("%m.%d-%H.%M.%S")
@@ -83,6 +77,16 @@ def quick_save():
     src_path = path + file
     dst_path = path + "backup/" + new_file_name
     shutil.copy(src_path, dst_path)
+
+
+def last_save():
+    path = file_path()
+    files = glob.glob(path + "backup/" + "*.eu4")
+    last_save = max(files, key=os.path.getctime)
+    split = last_save.rindex(" ")
+    newest_file = last_save[split + 1:]
+    shutil.copy(last_save, path + newest_file)
+
 
 
 def load_file():
