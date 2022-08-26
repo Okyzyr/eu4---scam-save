@@ -8,6 +8,7 @@ import glob
 from tkinter import ttk, Label
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import showinfo
+from tkinter import simpledialog
 
 
 def restart():
@@ -43,6 +44,30 @@ def backup():
     path = file_path()
     file = file_name()
     new_file_name = data + " " + file
+    dir_list = os.listdir(path)
+    if "backup" in dir_list:
+        pass
+    else:
+        folder_name = "backup"
+        full_path = os.path.join(path, folder_name)
+        os.mkdir(full_path)
+
+    src_path = path + file
+    dst_path = path + "backup/" + new_file_name
+    shutil.copy(src_path, dst_path)
+    showinfo(
+        title='Information',
+        message='File "' + file + '" duplicated as: \n"' + new_file_name + '"'
+    )
+
+
+def sv_info():
+    time = datetime.datetime.now()
+    data = time.strftime("%m.%d-%H.%M.%S")
+    path = file_path()
+    file = file_name()
+    info = simpledialog.askstring(title="Info", prompt="Add text to save file:")
+    new_file_name = data + "-" + info + " " + file
     dir_list = os.listdir(path)
     if "backup" in dir_list:
         pass
@@ -112,24 +137,32 @@ def load_file():
 root = tk.Tk()
 
 root.title("EU4 Ironman Save Backup")
-root.geometry('485x280')
+root.geometry('485x380')
 root.resizable(False, False)
 
 # save button
 backup_button = ttk.Button(root, text='Copy', command=backup)
-backup_button.place(x=67, y=19)
+backup_button.place(x=57, y=105)
+
+# save with info button
+backup_button = ttk.Button(root, text='Save with info', command=sv_info)
+backup_button.place(x=197, y=105)
 
 # quick save button
 fast_backup = ttk.Button(root, text='Quick Copy', command=quick_save)
-fast_backup.place(x=64, y=105)
+fast_backup.place(x=67, y=19)
 
 # load button
 load_button = ttk.Button(root, text='Rollback', command=load_file)
-load_button.place(x=317, y=19)
+load_button.place(x=330, y=19)
 
 # quick load button
 quick_load_button = ttk.Button(root, text='Rollback last save', command=last_save)
-quick_load_button.place(x=300, y=105)
+quick_load_button.place(x=320, y=105)
+
+# select file button
+btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
+btn_open.place(x=67, y=185)
 
 # select file button
 btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
