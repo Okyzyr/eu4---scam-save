@@ -135,12 +135,12 @@ def load_file():
 root = tk.Tk()
 paddings = {'padx': 20, 'pady': 20}
 root.title("EU4 Ironman Save Backup")
-root.geometry('465x320')
+root.geometry('475x320')
 root.resizable(False, False)
 root.configure(bg='gray')
 
 # copy button
-backup_button = tk.Button(root, bg="gray", text='Copy', command=backup)
+backup_button = tk.Button(root, bg="gray", text='Copy and show save name', command=backup)
 backup_button.grid(column=1, row=0, sticky=tk.W, **paddings)
 
 # copy with info button
@@ -152,15 +152,15 @@ fast_backup = tk.Button(root, bg="gray", text='Quick Copy', command=quick_save)
 fast_backup.grid(ipadx=10, ipady=30, column=0, row=0, sticky=tk.W, **paddings)
 
 # load button
-load_button = tk.Button(root, bg="gray", text='Rollback', command=load_file)
+load_button = tk.Button(root, bg="gray", text='Select file rollback', command=load_file)
 load_button.grid(column=1, row=1, sticky=tk.W, **paddings)
 
 # quick load button
-quick_load_button = tk.Button(root, bg="gray", text='Rollback last save', command=last_save)
+quick_load_button = tk.Button(root, bg="gray", text='Rollback to last save', command=last_save)
 quick_load_button.grid(column=0, row=1, sticky=tk.W, **paddings)
 
 # select file button
-btn_open = tk.Button(root, bg="gray", text="Select file", command=open_file_chooser)
+btn_open = tk.Button(root, bg="gray", text="Select file to backup", command=open_file_chooser)
 btn_open.grid(column=0, row=2, sticky=tk.W, **paddings)
 
 # exit button
