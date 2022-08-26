@@ -5,10 +5,9 @@ import shutil
 import sys
 import tkinter as tk
 import glob
-from tkinter import ttk, Label
+from tkinter import ttk, Label, simpledialog
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import showinfo
-from tkinter import simpledialog
 
 
 def restart():
