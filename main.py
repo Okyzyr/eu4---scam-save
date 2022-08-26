@@ -137,8 +137,8 @@ root = tk.Tk()
 paddings = {'padx': 20, 'pady': 20}
 
 root.title("EU4 Ironman Save Backup")
-root.geometry('485x280')
-root.resizable(True, True)
+root.geometry('465x320')
+root.resizable(False, False)
 
 # copy button
 backup_button = ttk.Button(root, text='Copy', command=backup)
@@ -150,7 +150,7 @@ backup_info_button.grid(column=2, row=0, sticky=tk.W, **paddings)
 
 # quick copy button
 fast_backup = ttk.Button(root, text='Quick Copy', command=quick_save)
-fast_backup.grid(column=0, row=0, sticky=tk.W, **paddings)
+fast_backup.grid(ipadx=10, ipady=30, column=0, row=0, sticky=tk.W, **paddings)
 
 # load button
 load_button = ttk.Button(root, text='Rollback', command=load_file)
@@ -174,8 +174,8 @@ except ValueError:
     open_file_chooser()
 finally:
     label2 = Label(root, text='Selected save game path: \n' + file_path())
-    label2.place(x=10, y=219)
+    label2.place(x=10, y=249)
     label3 = Label(root, text='Current file save: ' + file_name())
-    label3.place(x=10, y=255)
+    label3.place(x=10, y=295)
 
 root.mainloop()
