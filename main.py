@@ -156,7 +156,7 @@ load_button = tk.Button(root, bg="gray", text='Select file rollback', command=lo
 load_button.grid(column=1, row=1, sticky=tk.W, **paddings)
 
 # quick load button
-quick_load_button = tk.Button(root, bg="gray", text='Rollback to last save', command=last_save)
+quick_load_button = tk.Button(root, bg="gray", text='Rollback last save', command=last_save)
 quick_load_button.grid(column=0, row=1, sticky=tk.W, **paddings)
 
 # select file button
