@@ -30,7 +30,6 @@ def file_path():
     path = path[:split + 1]
     return path
 
-
 def file_name():
     file_name = linecache.getline(r'cfg.txt', 1).strip()
     split = file_name.rindex('/')
@@ -171,10 +170,14 @@ btn_open.place(x=67, y=185)
 # exit button
 exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
 exit_button.place(x=317, y=185)
-
-label2 = Label(root, text='Selected save game path: \n' + file_path())
-label2.place(x=10, y=219)
-label3 = Label(root, text='Backup file: ' + file_name())
-label3.place(x=185, y=255)
+try:
+    label2 = Label(root, text='Selected save game path: \n' + file_path())
+except ValueError:
+    open_file_chooser()
+finally:
+    label2 = Label(root, text='Selected save game path: \n' + file_path())
+    label2.place(x=10, y=219)
+    label3 = Label(root, text='Current file save: ' + file_name())
+    label3.place(x=185, y=255)
 
 root.mainloop()
