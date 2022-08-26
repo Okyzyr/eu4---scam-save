@@ -134,37 +134,37 @@ def load_file():
 
 root = tk.Tk()
 paddings = {'padx': 20, 'pady': 20}
-
 root.title("EU4 Ironman Save Backup")
 root.geometry('465x320')
 root.resizable(False, False)
+root.configure(bg='gray')
 
 # copy button
-backup_button = ttk.Button(root, text='Copy', command=backup)
+backup_button = tk.Button(root, bg="gray", text='Copy', command=backup)
 backup_button.grid(column=1, row=0, sticky=tk.W, **paddings)
 
 # copy with info button
-backup_info_button = ttk.Button(root, text='Copy with info', command=sv_info)
+backup_info_button = tk.Button(root, bg="gray", text='Copy with info', command=sv_info)
 backup_info_button.grid(column=2, row=0, sticky=tk.W, **paddings)
 
 # quick copy button
-fast_backup = ttk.Button(root, text='Quick Copy', command=quick_save)
+fast_backup = tk.Button(root, bg="gray", text='Quick Copy', command=quick_save)
 fast_backup.grid(ipadx=10, ipady=30, column=0, row=0, sticky=tk.W, **paddings)
 
 # load button
-load_button = ttk.Button(root, text='Rollback', command=load_file)
+load_button = tk.Button(root, bg="gray", text='Rollback', command=load_file)
 load_button.grid(column=1, row=1, sticky=tk.W, **paddings)
 
 # quick load button
-quick_load_button = ttk.Button(root, text='Rollback last save', command=last_save)
+quick_load_button = tk.Button(root, bg="gray", text='Rollback last save', command=last_save)
 quick_load_button.grid(column=0, row=1, sticky=tk.W, **paddings)
 
 # select file button
-btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
+btn_open = tk.Button(root, bg="gray", text="Select file", command=open_file_chooser)
 btn_open.grid(column=0, row=2, sticky=tk.W, **paddings)
 
 # exit button
-exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
+exit_button = tk.Button(root, bg="gray", text='Exit', command=lambda: root.quit())
 exit_button.grid(column=1, row=2, sticky=tk.W, **paddings)
 
 try:
@@ -172,9 +172,9 @@ try:
 except ValueError:
     open_file_chooser()
 finally:
-    label2 = Label(root, text='Selected save game path: \n' + file_path())
+    label2 = Label(root, bg="gray", text='Selected save game path: \n' + file_path())
     label2.place(x=10, y=249)
-    label3 = Label(root, text='Current file save: ' + file_name())
+    label3 = Label(root, bg="gray", text='Current file save: ' + file_name())
     label3.place(x=10, y=295)
 
 root.mainloop()
