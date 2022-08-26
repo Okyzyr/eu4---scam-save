@@ -174,7 +174,7 @@ except ValueError:
 finally:
     label2 = Label(root, bg="gray", text='Selected save game path: \n' + file_path())
     label2.place(x=10, y=249)
-    label3 = Label(root, bg="gray", text='Current file save: ' + file_name())
+    label3 = Label(root, bg="gray", text='Selected save file: ' + file_name())
     label3.place(x=10, y=295)
 
 root.mainloop()
