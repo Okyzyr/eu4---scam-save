@@ -30,6 +30,7 @@ def file_path():
     path = path[:split + 1]
     return path
 
+
 def file_name():
     file_name = linecache.getline(r'cfg.txt', 1).strip()
     split = file_name.rindex('/')
@@ -112,7 +113,6 @@ def last_save():
     shutil.copy(last_save, path + newest_file)
 
 
-
 def load_file():
     load_file_name = askopenfilename()
     load_path = load_file_name
@@ -134,42 +134,40 @@ def load_file():
 
 
 root = tk.Tk()
+paddings = {'padx': 20, 'pady': 20}
 
 root.title("EU4 Ironman Save Backup")
-root.geometry('485x380')
-root.resizable(False, False)
+root.geometry('485x280')
+root.resizable(True, True)
 
-# save button
+# copy button
 backup_button = ttk.Button(root, text='Copy', command=backup)
-backup_button.place(x=57, y=105)
+backup_button.grid(column=1, row=0, sticky=tk.W, **paddings)
 
-# save with info button
-backup_button = ttk.Button(root, text='Save with info', command=sv_info)
-backup_button.place(x=197, y=105)
+# copy with info button
+backup_info_button = ttk.Button(root, text='Copy with info', command=sv_info)
+backup_info_button.grid(column=2, row=0, sticky=tk.W, **paddings)
 
-# quick save button
+# quick copy button
 fast_backup = ttk.Button(root, text='Quick Copy', command=quick_save)
-fast_backup.place(x=67, y=19)
+fast_backup.grid(column=0, row=0, sticky=tk.W, **paddings)
 
 # load button
 load_button = ttk.Button(root, text='Rollback', command=load_file)
-load_button.place(x=330, y=19)
+load_button.grid(column=1, row=1, sticky=tk.W, **paddings)
 
 # quick load button
 quick_load_button = ttk.Button(root, text='Rollback last save', command=last_save)
-quick_load_button.place(x=320, y=105)
+quick_load_button.grid(column=0, row=1, sticky=tk.W, **paddings)
 
 # select file button
 btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
-btn_open.place(x=67, y=185)
-
-# select file button
-btn_open = ttk.Button(root, text="Select file", command=open_file_chooser)
-btn_open.place(x=67, y=185)
+btn_open.grid(column=0, row=2, sticky=tk.W, **paddings)
 
 # exit button
 exit_button = ttk.Button(root, text='Exit', command=lambda: root.quit())
-exit_button.place(x=317, y=185)
+exit_button.grid(column=1, row=2, sticky=tk.W, **paddings)
+
 try:
     label2 = Label(root, text='Selected save game path: \n' + file_path())
 except ValueError:
@@ -178,6 +176,6 @@ finally:
     label2 = Label(root, text='Selected save game path: \n' + file_path())
     label2.place(x=10, y=219)
     label3 = Label(root, text='Current file save: ' + file_name())
-    label3.place(x=185, y=255)
+    label3.place(x=10, y=255)
 
 root.mainloop()
